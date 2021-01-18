@@ -1,19 +1,22 @@
-# Exercise 2 - "Secure the box"
+# Exercise 3 - "Combine it all"
 
 ## Description
 
 Basic securing of the box
+Along with networking
 
 ## Prerequisites
 
 You need to know about:
  - Vagrant
  - Basic hardening of the system
+ - Networking hardening
 
 ## Objectives
 
 Secure the box, as best as you know.
-Updates, patches, user password complexity and MFA on SSHD with Google Authenticator
+- Updates, patches, user password complexity and MFA on SSHD with Google Authenticator.
+- Strict firewall rules as to what and who you're talking to.
 
 ## Software
 
