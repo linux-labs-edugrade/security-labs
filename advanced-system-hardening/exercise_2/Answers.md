@@ -1,6 +1,7 @@
 ## Fail2Ban configuration
 
  - A great guide by DigitalOcean: https://www.digitalocean.com/community/tutorials/how-to-protect-ssh-with-fail2ban-on-ubuntu-14-04
+ - A bit more up-to-date one too: https://www.howtogeek.com/675010/how-to-secure-your-linux-computer-with-fail2ban/
 
 ## LUKS encrypted vault
 
