@@ -175,7 +175,8 @@ Valid starting       Expires              Service principal
 ```
 
 And you're done!
-If you want to take it further, you can look into configuring PAM authentication with Kerberos, but that's another beast of it's own. Some hints:
+If you want to take it further, you can look into configuring PAM authentication with Kerberos, but that's another beast of it's own. 
+Some hints in case you need to add a host principle and add it to the keytab:
  - You'll need to add each host that provides a service as principles with passwords and add them to the keytab on the Kerberos server, you do that, by entering `kadmin.local` in the Kerberos server and running the following:
  ```
  addprinc host/HOSTNAME.edutest.local
@@ -184,4 +185,4 @@ If you want to take it further, you can look into configuring PAM authentication
  ```
  ktadd -k /etc/krb5.keytab host/HOSTNAME.edutest.local
  ```
- - Then you need to move to PAM or another services configuration and that's a whole other lecture, but have fun figuring it out if you choose to!
+ - After than you can move onto configuring the actual service that needed the host principle configured!
