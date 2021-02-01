@@ -1,0 +1,1 @@
+yum install -y krb5-server krb5-workstation krb5-libs
