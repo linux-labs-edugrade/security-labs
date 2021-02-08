@@ -1,0 +1,36 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby
+
+ENV["LC_ALL"] = "en_US.UTF-8"
+
+Vagrant.configure("2") do |config|
+    config.vm.box = "centos/8"
+    config.vm.synced_folder ".", "/vagrant", disabled: true
+    config.vm.provision "shell", path: "scripts/setup.sh"
+
+    config.vm.provider :virtualbox do |v|
+        v.memory = 512
+        v.linked_clone = true
+        v.check_guest_additions = false
+        v.customize ["modifyvm", :id, "--cpuexecutioncap", "75"]
+    end
+
+    config.vm.define "web01" do |server|
+        server.vm.hostname = "web01.local"
+        server.vm.network :private_network, ip: "172.22.100.10", virtualbox__intnet: "securing_nextcloud"
+        server.vm.network :forwarded_port, guest: 80, host: 8080, id: 'http'
+        server.vm.network :forwarded_port, guest: 443, host: 8443, id: 'https'
+        server.vm.provision "shell", path: "scripts/web01.sh"
+    end
+
+    config.vm.define "db01" do |server|
+        server.vm.hostname = "db01.local"
+        server.vm.network :private_network, ip: "172.22.100.11", virtualbox__intnet: "securing_nextcloud"
+        server.vm.provision "file", source: "scripts/nextcloud.sql", destination: "nextcloud.sql"
+        server.vm.provision "shell", path: "scripts/db01.sh"
+    end
+    config.vm.define "mon01" do |server|
+        server.vm.hostname = "mon01.local"
+        server.vm.network :private_network, ip: "172.22.100.12", virtualbox__intnet: "securing_nextcloud"
+    end
+end
