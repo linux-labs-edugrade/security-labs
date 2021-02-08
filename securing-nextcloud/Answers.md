@@ -90,10 +90,10 @@ Keeping it simple for `web01`:
 iptables -A INPUT  -p tcp --dport 22 -j ACCEPT
 iptables -A INPUT  -p tcp --dport 80 -j ACCEPT
 iptables -A INPUT  -p tcp --dport 443 -j ACCEPT
-iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 iptables -A INPUT -j DROP
 
 iptables -A OUTPUT -d 172.22.100.11 -p tcp --dport 3306 -j ACCEPT
+iptables -A OUTPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 iptables -A OUTPUT -j DROP
 
 ```
@@ -102,9 +102,9 @@ For `db01`:
 ```
 iptables -A INPUT -p tcp --dport 22 -j ACCEPT
 iptables -A INPUT -p tcp --dport 3306 -j ACCEPT
-iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 iptables -A INPUT -j DROP
 
+iptables -A OUTPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 iptables -A OUTPUT -j DROP
 ```
 
