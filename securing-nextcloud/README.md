@@ -37,6 +37,7 @@ So some relevant information:
  - Default login to NextCloud is : `admin / admin123`
  - Root password for the mysql database is: `security`
  - `mon01` doesn't have anything specific, feel free to configure and place scripts where ever you wish!
+ - Once the vagrant is done and up, you can reach the Nextcloud on your browser, at url: http://localhost:8080
 
 A few hints:
  - `nmap` is great tool for port scanning, has additional scripts too
